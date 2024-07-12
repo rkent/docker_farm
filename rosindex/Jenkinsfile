@@ -1,0 +1,11 @@
+pipeline {
+    agent any
+    stages {
+        stage('Clone') {
+            steps {
+                sh 'env'
+                git branch: 'ros2', url: 'https://github.com/rkent/rosindex'
+            }
+        }
+    }
+}
