@@ -10,7 +10,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 sh 'ls'
-                sh 'docker/build.sh'
+                sh 'docker/build.sh ls'
             }
         }
         stage('Build website') {
