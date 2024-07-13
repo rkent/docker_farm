@@ -66,10 +66,14 @@ services:
       - '50000:50000'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /ros2/jenkins:/var/jenkins_home
+      - /ros2/jenkins:/ros2/jenkins
       - ./:/var/docker_farm
     group_add:
       - 998 #docker group id
+    # JENKINS_HOME should point to a directory that it the same in host and container.
+    # Otherwise, docker volumes in the container don't match.
+    environment:
+      JENKINS_HOME: /ros2/jenkins
 
 secrets:
   db_password:
