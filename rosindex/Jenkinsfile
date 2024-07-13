@@ -15,8 +15,7 @@ pipeline {
         stage('Build website') {
             steps {
                 sh 'echo WORKSPACE is ${WORKSPACE}'
-                dir('docker') {
-                    sh './run.sh pwd'
+                sh 'docker/run.sh "ls;pwd"'
                 }
             }
         }
