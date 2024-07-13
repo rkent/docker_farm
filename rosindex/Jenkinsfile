@@ -4,7 +4,7 @@ pipeline {
         stage('Clone') {
             steps {
                 sh 'env'
-                git branch: 'ros2', url: 'https://github.com/rkent/rosindex'
+                git branch: 'ros2-test', url: 'https://github.com/rkent/rosindex'
             }
         }
         stage('Build Image') {
@@ -14,6 +14,7 @@ pipeline {
         }
         stage('Build website') {
             steps {
+                sh 'echo WORKSPACE is ${WORKSPACE}'
                 dir('docker') {
                     sh './run.sh pwd'
                 }
