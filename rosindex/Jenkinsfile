@@ -15,7 +15,7 @@ pipeline {
         stage('Build website') {
             steps {
                 dir('docker') {
-                    sh './run.sh ls'
+                    sh './run.sh pwd'
                 }
             }
         }
