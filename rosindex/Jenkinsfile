@@ -15,7 +15,9 @@ pipeline {
         }
         stage('Build website') {
             steps {
-                sh 'docker/run.sh make build'
+                dir('docker') {
+                    sh './run.sh make build'
+                }
             }
         }
     }
