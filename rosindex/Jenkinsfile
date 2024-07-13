@@ -4,13 +4,13 @@ pipeline {
         stage('Clone') {
             steps {
                 sh 'env'
-                git branch: 'ros2', url: 'https://github.com/rkent/rosindex'
+                git branch: 'ros2-test', url: 'https://github.com/rkent/rosindex'
             }
         }
         stage('Build Image') {
             steps {
                 sh 'ls'
-                sh 'docker/build.sh ls'
+                sh 'docker/build.sh make -d clean
             }
         }
         stage('Build website') {
