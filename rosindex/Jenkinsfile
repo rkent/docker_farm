@@ -16,7 +16,6 @@ pipeline {
             steps {
                 sh 'echo WORKSPACE is ${WORKSPACE}'
                 sh 'docker/run.sh "ls;pwd"'
-                }
             }
         }
     }
