@@ -17,5 +17,10 @@ pipeline {
                 sh 'docker/run.sh make build'
             }
         }
+        stage('Sync website') {
+            steps {
+                sh 'rsync -ra /ros2/jenkins/workspace/rosindex/_site /ros2/rosindex/'
+            }
+        }
     }
 }
