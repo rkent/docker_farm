@@ -66,7 +66,7 @@ services:
       - '50000:50000'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /ros2/jenkins:/ros2/jenkins
+      - /ros2:/ros2
       - ./:/var/docker_farm
     group_add:
       - 998 #docker group id
