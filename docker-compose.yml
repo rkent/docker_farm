@@ -74,6 +74,7 @@ services:
     # Otherwise, docker volumes in the container don't match.
     environment:
       JENKINS_HOME: /ros2/jenkins
+      TZ: America/Los_Angeles
 
 secrets:
   db_password:
