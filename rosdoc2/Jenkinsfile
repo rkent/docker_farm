@@ -7,6 +7,7 @@ pipeline {
                 git branch: 'ros2-rkent', url: 'https://github.com/rkent/rosindex'
             }
         }
+        /*
         stage('Build Image') {
             steps {
                 sh 'docker/build.sh'
@@ -20,9 +21,20 @@ pipeline {
                 sh 'docker/run.sh make scrape'
             }
         }
+        */
         stage('Clone rosdoc2') {
             steps {
                 checkout poll: false, scm: scmGit(branches: [[name: 'refs/tags/nightly']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'rosdoc2']], userRemoteConfigs: [[url: 'https://github.com/rkent/rosdoc2.git']])
+            }
+        }
+        stage('Docker build rosdoc2'( {
+            steps {
+                sh docker build rosdoc2 -t rosdoc2:docker_farm
+            }
+        }
+        stage('Docker run rosdoc2') {
+            steps {
+                sh docker run --rm -name rosdoc2 -v $WORKSPACE:/rosdoc2 rosdoc2:docker_farm
             }
         }
         /*
