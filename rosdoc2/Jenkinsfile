@@ -27,7 +27,7 @@ pipeline {
                 checkout poll: false, scm: scmGit(branches: [[name: 'refs/tags/nightly']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'rosdoc2']], userRemoteConfigs: [[url: 'https://github.com/rkent/rosdoc2.git']])
             }
         }
-        stage('Docker build rosdoc2'( {
+        stage('Docker build rosdoc2') {
             steps {
                 sh 'docker build rosdoc2 -t rosdoc2:docker_farm'
             }
