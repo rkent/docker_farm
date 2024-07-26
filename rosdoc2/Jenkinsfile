@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Docker build rosdoc2') {
             steps {
-                sh 'docker build rosdoc2 -t rosdoc2:docker_farm'
+                sh 'docker build -t rosdoc2:docker_farm /home/kent/docker_farm/rosdoc2'
             }
         }
         stage('Docker run rosdoc2') {
