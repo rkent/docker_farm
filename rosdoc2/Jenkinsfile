@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+    stages {
+        stage('Clone ') {
+            steps {
+                sh 'env'
+                git branch: 'ros2-rkent', url: 'https://github.com/rkent/rosindex'
+            }
+        }
+        stage('Build Image') {
+            steps {
+                sh 'docker/build.sh'
+            }
+        }
+        stage('Checkout repos') {
+            steps {
+                sh 'rm -rf _remotes'
+                sh 'docker/run.sh make discover'
+                sh 'docker/run.sh make update'
+                sh 'docker/run.sh make scrape'
+            }
+        }
+        stage('Clone rosdoc2') {
+            steps {
+                checkout poll: false, scm: scmGit(branches: [[name: 'refs/tags/nightly']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'rosdoc2']], userRemoteConfigs: [[url: 'https://github.com/rkent/rosdoc2.git']])
+            }
+        }
+        /*
+        stage('Sync website') {
+            steps {
+                sh 'rsync -ra /ros2/jenkins/workspace/rosdoc2/docs_output /ros2/rosdoc2/'
+            }
+        }
+        */
+    }
+}
