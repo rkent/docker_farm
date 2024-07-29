@@ -45,4 +45,9 @@ pipeline {
         }
         */
     }
+    post {
+        always {
+            sh 'docker stop rosdoc2_scan'
+        }
+    }
 }
