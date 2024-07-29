@@ -33,6 +33,7 @@ pipeline {
         }
         stage('Docker run rosdoc2') {
             steps {
+                sh 'docker rm -f rosdoc2_scan || true'
                 sh 'docker run --rm --name rosdoc2_scan -v $WORKSPACE:/rosdoc2 rosdoc2:docker_farm'
             }
         }
