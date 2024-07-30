@@ -14,8 +14,19 @@ RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
 
 ENV LANG=en_US.UTF-8 
 RUN apt install -y --no-install-recommends doxygen graphviz python3-pip python3-venv
-COPY run.sh /usr/local/bin/run_rosdoc2
+# from stdeb.cfg requirements
+RUN apt install -y --no-install-recommends \
+  python3-sphinx \
+  python3-breathe \
+  python3-catkin-pkg \
+  python3-exhale \
+  python3-jinja2 \
+  python3-myst-parser \
+  python3-setuptools \
+  python3-sphinx-rtd-theme \
+  python3-yaml
 
+COPY run.sh /usr/local/bin/run_rosdoc2
 RUN useradd -u $uid -m $user
 
 WORKDIR /rosdoc2

@@ -3,21 +3,25 @@ pipeline {
     stages {
         stage('Clone ') {
             steps {
-                git branch: 'only-iron', url: 'https://github.com/rkent/rosindex'
+                checkout poll: false, scm: scmGit(branches: [[name: 'refs/heads/only-iron']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'rosindex']], userRemoteConfigs: [[name: 'origin', url: 'https://github.com/rkent/rosindex']])
             }
         }
         /**/
-        stage('Build Image') {
+        stage('Build rosindex image')
             steps {
-                sh 'docker/build.sh'
+                dir('rosindex') {
+                    sh 'docker/build.sh'
+                }
             }
         }
         stage('Checkout repos') {
             steps {
-                sh 'docker/run.sh make clean'
-                sh 'docker/run.sh make discover'
-                sh 'docker/run.sh make update'
-                sh 'docker/run.sh make scrape'
+                dir('rosindex') {
+                    sh 'docker/run.sh make clean'
+                    sh 'docker/run.sh make discover'
+                    sh 'docker/run.sh make update'
+                    sh 'docker/run.sh make scrape'
+                }
             }
         }
         /**/
