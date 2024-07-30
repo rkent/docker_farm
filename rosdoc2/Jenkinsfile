@@ -41,17 +41,15 @@ pipeline {
                 sh 'docker run --rm --name rosdoc2_scan -v $WORKSPACE:/rosdoc2 rosdoc2:docker_farm'
             }
         }
-        /*
         stage('Sync website') {
             steps {
                 sh 'rsync -ra /ros2/jenkins/workspace/rosdoc2/docs_output /ros2/rosdoc2/'
             }
         }
-        */
     }
     post {
         always {
-            sh 'docker stop rosdoc2_scan'
+            sh 'docker stop rosdoc2_scan || true'
         }
     }
 }
