@@ -3,11 +3,6 @@ FROM ubuntu:jammy
 ARG user=rosdoc2
 ARG uid=1000
 
-# Add ros2 repos, needed for python3-colcon-core
-RUN sh -c 'echo "deb [arch=amd64,arm64] http://repo.ros2.org/ubuntu/main `lsb_release -cs` main" > /etc/apt/sources.list.d/ros2-latest.list'
-RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
-RUN apt update
-
 # Setup locale
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt install -y locales curl
