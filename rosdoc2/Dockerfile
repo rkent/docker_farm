@@ -3,6 +3,8 @@ FROM ubuntu:jammy
 ARG user=rosdoc2
 ARG uid=1000
 
+RUN apt update
+
 # Setup locale
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt install -y locales curl
