@@ -24,7 +24,8 @@ RUN apt install -y --no-install-recommends \
   python3-myst-parser \
   python3-setuptools \
   python3-sphinx-rtd-theme \
-  python3-yaml
+  python3-yaml \
+  python3-colcon-core
 
 COPY run.sh /usr/local/bin/run_rosdoc2
 RUN useradd -u $uid -m $user
