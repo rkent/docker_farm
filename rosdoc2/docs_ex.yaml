@@ -1,0 +1,146 @@
+---
+- docs-support:
+    tracetools_analysis:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    beluga:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rosidl_runtime_c:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rosidl_typesupport_c:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    mola_navstate_fg:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    mp2p_icp:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rmw_dds_common:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    robotraconteur:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rcpputils:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    py_trees_ros:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    tracetools_test:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    osrf_pycommon:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rosidl_typesupport_fastrtps_cpp:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rosidl_typesupport_introspection_cpp:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    mola_lidar_odometry:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rosidl_typesupport_cpp:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    beluga_ros:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rviz_visual_testing_framework:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    libcaer:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rosidl_typesupport_fastrtps_c:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    cartographer:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    grbl_ros:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rosidl_typesupport_introspection_c:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    fields2cover:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rosidl_runtime_cpp:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    usb_cam:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    mvsim:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    beluga_benchmark:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    beluga_amcl:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    mola_navstate_fuse:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    gtest_vendor:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    py_trees_js:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    cyclonedds:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    py_trees:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    gmock_vendor:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    tf2_ros:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
