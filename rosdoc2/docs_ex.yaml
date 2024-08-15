@@ -1,12 +1,46 @@
 ---
+- big-packages-with-external-docs:
+    options: {}
+    packages:
+      pinococchio:
+        settings:
+          never_run_doxygen: true
+          never_run_sphinx_apidoc: true
+        builders:
+          - sphinx:
+              external_doc_url: "https://gepettoweb.laas.fr/doc/stack-of-tasks/pinocchio/master/doxygen-html/"
+      fastrtps:
+        settings:
+          never_run_doxygen: true
+          never_run_sphinx_apidoc: true
+        builders:
+          - sphinx:
+              external_doc_url: "https://eprosima.com/index.php/products-all/eprosima-fast-dds"
+      beluga:
+        settings:
+          never_run_doxygen: true
+          never_run_sphinx_apidoc: true
+        builders:
+          - sphinx:
+              external_doc_url: "https://ekumen-os.github.io/beluga/"
+      ign_rviz:
+        settings:
+          never_run_doxygen: true
+          never_run_sphinx_apidoc: true
+        builders:
+          - sphinx:
+              external_doc_url: "https://github.com/gazebosim/gz-rviz/wiki"
+      mp2p_icp:
+        settings:
+          never_run_doxygen: true
+          never_run_sphinx_apidoc: true
+        builders:
+          - sphinx:
+              external_doc_url: "https://docs.mola-slam.org/latest/module-mp2p-icp.html"
 - docs-support:
     options: {}
     packages:
       tracetools_analysis:
-        builders:
-          - sphinx:
-              user_doc_dir: "docs"
-      beluga:
         builders:
           - sphinx:
               user_doc_dir: "docs"
@@ -19,10 +53,6 @@
           - sphinx:
               user_doc_dir: "docs"
       mola_navstate_fg:
-        builders:
-          - sphinx:
-              user_doc_dir: "docs"
-      mp2p_icp:
         builders:
           - sphinx:
               user_doc_dir: "docs"
