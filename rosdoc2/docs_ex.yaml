@@ -2,7 +2,7 @@
 - big-packages-with-external-docs:
     options: {}
     packages:
-      pinococchio:
+      pinocchio:
         settings:
           never_run_doxygen: true
           never_run_sphinx_apidoc: true
