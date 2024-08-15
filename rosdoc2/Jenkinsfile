@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clone ') {
             steps {
-                checkout poll: false, scm: scmGit(branches: [[name: 'refs/heads/only-iron']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'rosindex']], userRemoteConfigs: [[name: 'origin', url: 'https://github.com/rkent/rosindex']])
+                checkout poll: false, scm: scmGit(branches: [[name: 'refs/heads/only-rolling']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'rosindex']], userRemoteConfigs: [[name: 'origin', url: 'https://github.com/rkent/rosindex']])
             }
         }
         /**/
