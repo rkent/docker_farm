@@ -172,7 +172,3 @@
         builders:
           - sphinx:
               user_doc_dir: "docs"
-      tf2_ros:
-        builders:
-          - sphinx:
-              user_doc_dir: "docs"
