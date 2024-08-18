@@ -1,4 +1,12 @@
 ---
+- bad-rosdo2-yaml:
+    options: {}
+    packages:
+      point_cloud_transport:
+        builders:
+          - sphinx:
+              sphinx_sourcedir: none
+
 - big-packages-with-external-docs:
     options: {}
     packages:
@@ -37,6 +45,21 @@
         builders:
           - sphinx:
               external_doc_url: "https://docs.mola-slam.org/latest/module-mp2p-icp.html"
+      grbl_ros:
+        settings:
+          never_run_doxygen: true
+          never_run_sphinx_apidoc: true
+        builders:
+          - sphinx:
+              external_doc_url: "https://flynneva.github.io/grbl_ros/"
+      fields2cover:
+        settings:
+          never_run_doxygen: true
+          never_run_sphinx_apidoc: true
+        builders:
+          - sphinx:
+              external_doc_url: "https://fields2cover.github.io/
+        
 - docs-support:
     options: {}
     packages:
@@ -172,3 +195,4 @@
         builders:
           - sphinx:
               user_doc_dir: "docs"
+
