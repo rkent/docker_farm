@@ -58,7 +58,7 @@
           never_run_sphinx_apidoc: true
         builders:
           - sphinx:
-              external_doc_url: "https://fields2cover.github.io/
+              external_doc_url: "https://fields2cover.github.io/"
         
 - docs-support:
     options: {}
