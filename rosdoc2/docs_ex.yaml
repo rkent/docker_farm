@@ -195,4 +195,8 @@
         builders:
           - sphinx:
               user_doc_dir: "docs"
+      bno055:
+        builders:
+          - sphinx:
+              user_doc_dir: "docs"
 
