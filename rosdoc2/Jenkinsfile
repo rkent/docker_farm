@@ -1,27 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('Clone ') {
+        stage('Clone distroclone') {
             steps {
-                checkout poll: false, scm: scmGit(branches: [[name: 'refs/heads/only-rolling']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'rosindex']], userRemoteConfigs: [[name: 'origin', url: 'https://github.com/rkent/rosindex']])
-            }
-        }
-        /**/
-        stage('Build rosindex image') {
-            steps {
-                dir('rosindex') {
-                    sh 'docker/build.sh'
-                }
-            }
-        }
-        stage('Checkout repos') {
-            steps {
-                dir('rosindex') {
-                    sh 'docker/run.sh make clean'
-                    sh 'docker/run.sh make discover'
-                    sh 'docker/run.sh make update'
-                    sh 'docker/run.sh make scrape'
-                }
+                checkout poll: false, scm: scmGit(branches: [[name: 'refs/heads/main']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'distroclone']], userRemoteConfigs: [[name: 'origin', url: 'https://github.com/rkent/distroclone']])
             }
         }
         /**/
