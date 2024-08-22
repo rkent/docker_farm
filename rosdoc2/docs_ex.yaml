@@ -1,16 +1,37 @@
 ---
-- bad-rosdo2-yaml:
+- bad-rosdoc2-yaml:
     options: {}
     packages:
       point_cloud_transport:
         builders:
           - sphinx:
               sphinx_sourcedir: null
-      tf2_ros:
-        settings:
-          enable_breathe: true
-          enable_exhale: true
 
+- sphinx-errors:
+    options: {}
+    packages:
+      ign_rviz_plugins:
+        settings:
+          never_run_doxygen: true
+      avt_vimba_camera:
+        settings:
+          never_run_doxygen: true
+      ecl_geometry:
+        settings:
+          never_run_doxygen: true
+      ecl_converters:
+        settings:
+          never_run_doxygen: true
+      ecl_containers:
+        settings:
+          never_run_doxygen: true
+      rmf_visualization_schedule:
+        settings:
+          never_run_doxygen: true
+      magic_enum:
+        settings:
+          never_run_doxygen: true     
+      
 - big-packages-with-external-docs:
     options: {}
     packages:
