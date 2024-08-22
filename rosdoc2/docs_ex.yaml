@@ -5,7 +5,11 @@
       point_cloud_transport:
         builders:
           - sphinx:
-              sphinx_sourcedir: none
+              sphinx_sourcedir: null
+      tf2_ros:
+        settings:
+          enable_breathe: true
+          enable_exhale: true
 
 - big-packages-with-external-docs:
     options: {}
@@ -144,10 +148,6 @@
           - sphinx:
               user_doc_dir: "docs"
       rosidl_typesupport_introspection_c:
-        builders:
-          - sphinx:
-              user_doc_dir: "docs"
-      fields2cover:
         builders:
           - sphinx:
               user_doc_dir: "docs"
