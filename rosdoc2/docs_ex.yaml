@@ -12,25 +12,25 @@
     packages:
       ign_rviz_plugins:
         settings:
-          never_run_doxygen: true
+          disable_breathe: true
       avt_vimba_camera:
         settings:
-          never_run_doxygen: true
+          disable_breathe: true
       ecl_geometry:
         settings:
-          never_run_doxygen: true
+          disable_breathe: true
       ecl_converters:
         settings:
-          never_run_doxygen: true
+          disable_breathe: true
       ecl_containers:
         settings:
-          never_run_doxygen: true
+          disable_breathe: true
       rmf_visualization_schedule:
         settings:
-          never_run_doxygen: true
+          disable_breathe: true
       magic_enum:
         settings:
-          never_run_doxygen: true     
+          disable_breathe: true
       
 - big-packages-with-external-docs:
     options: {}
