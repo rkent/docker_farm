@@ -6,6 +6,9 @@
         builders:
           - sphinx:
               sphinx_sourcedir: null
+      message_filters:
+        settings:
+          python_source: 'src/message_filters'
 
 - sphinx-errors:
     options: {}
