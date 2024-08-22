@@ -13,24 +13,31 @@
       ign_rviz_plugins:
         settings:
           disable_breathe: true
+          show_doxygen_html: true
       avt_vimba_camera:
         settings:
           disable_breathe: true
+          show_doxygen_html: true
       ecl_geometry:
         settings:
           disable_breathe: true
+          show_doxygen_html: true
       ecl_converters:
         settings:
           disable_breathe: true
+          show_doxygen_html: true
       ecl_containers:
         settings:
           disable_breathe: true
+          show_doxygen_html: true
       rmf_visualization_schedule:
         settings:
           disable_breathe: true
+          show_doxygen_html: true
       magic_enum:
         settings:
           disable_breathe: true
+          show_doxygen_html: true
       
 - big-packages-with-external-docs:
     options: {}
@@ -84,6 +91,14 @@
         builders:
           - sphinx:
               external_doc_url: "https://fields2cover.github.io/"
+      depthai-ros:
+        settings:
+          never_run_doxygen: true
+          never_run_sphinx_apidoc: true
+        builders:
+          - sphinx:
+              external_doc_url: "https://docs.luxonis.com/software/ros/depthai-ros/"
+        
         
 - docs-support:
     options: {}
