@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Sync website') {
             steps {
-                sh 'rsync -ra /ros2/jenkins/workspace/rosindex/_site /ros2/rosindex/'
+                sh 'rsync -ra --del /ros2/jenkins/workspace/rosindex/_site /ros2/rosindex/'
             }
         }
     }
