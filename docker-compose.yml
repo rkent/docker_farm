@@ -87,6 +87,17 @@ services:
       JENKINS_HOME: /ros2/jenkins
       TZ: America/Los_Angeles
 
+  rosdabbler_com:
+    image: 'nginx:1.27'
+    restart: unless-stopped
+    ports:
+      # These ports are in format <host-port>:<container-port>
+      - '8083:80' # Public HTTP Port
+    volumes:
+      - ./rosdabbler_web:/usr/share/nginx/html
+    container_name: rosdabbler_web
+    hostname: rosdabbler_web
+
 secrets:
   db_password:
     file: secrets/db_password.txt
