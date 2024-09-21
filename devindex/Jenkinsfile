@@ -4,7 +4,7 @@ pipeline {
         stage('Clone') {
             steps {
                 sh 'env'
-                git branch: 'pr-ros2', url: 'https://github.com/rkent/rosindex'
+                git branch: 'ros2-rkent', url: 'https://github.com/rkent/rosindex'
             }
         }
         stage('Build Image') {
@@ -16,11 +16,6 @@ pipeline {
             steps {
                 sh 'rm -rf _remotes'
                 sh 'docker/run.sh make build'
-            }
-        }
-        stage('Sync website') {
-            steps {
-                sh 'rsync -ra --del /ros2/jenkins/workspace/rosindex/_site /ros2/rosindex/'
             }
         }
     }
