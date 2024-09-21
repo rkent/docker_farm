@@ -56,6 +56,17 @@ services:
     container_name: rosindex_web
     hostname: rosindex_web
 
+  devindex_web:
+    image: 'nginx:1.27'
+    restart: unless-stopped
+    ports:
+      # These ports are in format <host-port>:<container-port>
+      - '8084:80' # Public HTTP Port
+    volumes:
+      - /ros2/jenkins/workspace/devindex/_site:/usr/share/nginx/html
+    container_name: devindex_web
+    hostname: devindex_web
+
   rosdoc2_web:
     build: './rosdoc2_web'
     restart: unless-stopped
