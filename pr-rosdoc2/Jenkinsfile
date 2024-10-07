@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Docker run rosdoc2') {
             steps {
-                sh 'ln -s /ros2/jenkins/workspace/rosdoc2/checkout $WORKSPACE/checkout'
+                sh 'ln -s -f /ros2/jenkins/workspace/rosdoc2/checkout $WORKSPACE/checkout'
                 sh 'docker rm -f rosdoc2_pr || true'
                 sh 'docker run --rm --name rosdoc2_pr -v $WORKSPACE:/rosdoc2 rosdoc2:docker_farm run_rosdoc2 "scan -p checkout -t 3600 "'
             }
