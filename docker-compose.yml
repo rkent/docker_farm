@@ -78,6 +78,17 @@ services:
     container_name: rosdoc2_web
     hostname: rosdoc2_web
 
+  pr_rosdoc2_web:
+    build: './rosdoc2_web'
+    restart: unless-stopped
+    ports:
+      # These ports are in format <host-port>:<container-port>
+      - '8085:80' # Public HTTP Port
+    volumes:
+      - /ros2/jenkins/workspace/pr-rosdoc2/docs_output:/usr/share/nginx/html
+    container_name: pr_rosdoc2_web
+    hostname: pr_rosdoc2_web
+
   jenkins:
     build: ./jenkins
     restart: unless-stopped
