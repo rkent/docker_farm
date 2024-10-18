@@ -9,7 +9,7 @@ pipeline {
         stage('Docker run rosdoc2') {
             steps {
                 sh 'docker rm -f rosdoc2_pr || true'
-                sh 'docker run --rm --name rosdoc2_pr -v $WORKSPACE:/rosdoc2 -v /ros2/jenkins/workspace/rosdoc2/checkout:/checkout rosdoc2:docker_farm run_rosdoc2 "scan -p /checkout -t 3600"'
+                sh 'docker run --rm --name rosdoc2_pr -v $WORKSPACE:/rosdoc2 -v /ros2/jenkins/workspace/rosdoc2/checkout:/checkout rosdoc2:docker_farm run_rosdoc2 "scan -p /checkout -t 3600 -u https://prrosdoc2.rosdabbler.com"'
             }
         }
     }
