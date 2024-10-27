@@ -1,9 +1,11 @@
 pipeline {
     agent any
 
-    def ROS_DISTRO = 'humble'
-    def DESTINATION = 'checkout'
-    def ROSDOC2_BRANCH = 'rkj-main'
+    environment{
+        ROS_DISTRO = 'humble'
+        DESTINATION = 'checkout'
+        ROSDOC2_BRANCH = 'rkj-main'
+    }
 
     stages {
         /*
@@ -19,7 +21,7 @@ pipeline {
             }
         }
         /**/
-        stage('Docker clone distro ${ROS_DISTRO} with distroclone') {
+        stage('Docker clone distro with distroclone') {
             steps {
                 sh 'docker rm -f rosdoc2_scan_humble || true'
                 sh 'echo ROS_DISTRO is ${ROS_DISTRO}'
@@ -28,7 +30,7 @@ pipeline {
         }
         stage('Clone rosdoc2') {
             steps {
-                checkout poll: false, scm: scmGit(branches: [[name: 'refs/heads/${ROSDOC2_BRANCH}']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'rosdoc2']], userRemoteConfigs: [[url: 'https://github.com/rkent/rosdoc2.git']])
+                checkout poll: false, scm: scmGit(branches: [[name: "refs/heads/${ROSDOC2_BRANCH}"]], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'rosdoc2']], userRemoteConfigs: [[url: 'https://github.com/rkent/rosdoc2.git']])
             }
         }
         stage('Docker run rosdoc2') {
