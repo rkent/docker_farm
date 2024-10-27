@@ -2,12 +2,17 @@ pipeline {
     agent any
 
     environment{
-        ROS_DISTRO = 'humble'
+        ROS_DISTRO = 'rolling'
         DESTINATION = 'checkout'
         ROSDOC2_BRANCH = 'rkj-main'
     }
 
     stages {
+        stage('Docker build rosdoc2') {
+            steps {
+                sh 'docker build -t rosdoc2:docker_farm /var/docker_farm/rosdoc2'
+            }
+        }
         stage('Clone distroclone') {
             steps {
                 checkout poll: false, scm: scmGit(branches: [[name: 'refs/heads/main']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'distroclone']], userRemoteConfigs: [[name: 'origin', url: 'https://github.com/rkent/distroclone']])
@@ -28,16 +33,14 @@ pipeline {
         stage('Docker run rosdoc2') {
             steps {
                 sh 'docker rm -f rosdoc2_scan || true'
-                sh 'docker run --rm --name rosdoc2_scan -v $WORKSPACE:/rosdoc2 rosdoc2:docker_farm run_rosdoc2 "scan -p /rosdoc2/checkout -t 3600 -y /rosdoc2/rosdoc2/docs_ex.yaml -u https://rosdoc2.rosdabbler.com/humble"'
+                sh 'docker run --rm --name rosdoc2_scan -v $WORKSPACE:/rosdoc2 rosdoc2:docker_farm run_rosdoc2 "scan -p /rosdoc2/checkout -t 3600 -y /rosdoc2/rosdoc2/docs_ex.yaml -u https://rosdoc2.rosdabbler.com"'
             }
         }
-        /*
         stage('Sync website') {
             steps {
                 sh 'rsync -ra /ros2/jenkins/workspace/rosdoc2/docs_output /ros2/rosdoc2/'
             }
         }
-        */
     }
     post {
         always {

@@ -1,9 +1,13 @@
 pipeline {
     agent any
+    environment{
+        ROSDOC2_BRANCH = 'pr-main'
+    }
+
     stages {
         stage('Clone rosdoc2') {
             steps {
-                checkout poll: false, scm: scmGit(branches: [[name: 'refs/heads/pr-main']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'rosdoc2']], userRemoteConfigs: [[url: 'https://github.com/rkent/rosdoc2.git']])
+                checkout poll: false, scm: scmGit(branches: [[name: 'refs/heads/${ROSDOC2_BRANCH}']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'rosdoc2']], userRemoteConfigs: [[url: 'https://github.com/rkent/rosdoc2.git']])
             }
         }
         stage('Docker run rosdoc2') {
