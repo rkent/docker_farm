@@ -74,7 +74,7 @@ services:
       # These ports are in format <host-port>:<container-port>
       - '8082:80' # Public HTTP Port
     volumes:
-      - /ros2/rosdoc2/docs_output:/usr/share/nginx/html
+      - /data2/rosdoc2:/usr/share/nginx/html
     container_name: rosdoc2_web
     hostname: rosdoc2_web
 

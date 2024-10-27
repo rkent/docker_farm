@@ -1,11 +1,9 @@
 pipeline {
     agent any
 
-    environment{
-        ROS_DISTRO = 'humble'
-        DESTINATION = 'checkout'
-        ROSDOC2_BRANCH = 'rkj-main'
-    }
+    def ROS_DISTRO = 'humble'
+    def DESTINATION = 'checkout'
+    def ROSDOC2_BRANCH = 'rkj-main'
 
     stages {
         /*
@@ -21,7 +19,7 @@ pipeline {
             }
         }
         /**/
-        stage('Docker clone ${ROS_DISTRO} distro with distroclone') {
+        stage('Docker clone distro ${ROS_DISTRO} with distroclone') {
             steps {
                 sh 'docker rm -f rosdoc2_scan_humble || true'
                 sh 'echo ROS_DISTRO is ${ROS_DISTRO}'
