@@ -1,5 +1,12 @@
 pipeline {
     agent any
+
+    environment{
+        ROS_DISTRO = 'rolling'
+        DESTINATION = 'checkout'
+        ROSDOC2_BRANCH = 'rkj-main'
+    }
+
     stages {
         stage('Docker build rosdoc2') {
             steps {
@@ -15,12 +22,12 @@ pipeline {
         stage('Docker clone distro with distroclone') {
             steps {
                 sh 'docker rm -f rosdoc2_scan || true'
-                sh 'docker run --rm --name rosdoc2_scan -v $WORKSPACE:/rosdoc2 rosdoc2:docker_farm run_distroclone'
+                sh 'docker run --rm --name rosdoc2_scan -v $WORKSPACE:/rosdoc2 rosdoc2:docker_farm run_distroclone ${ROS_DISTRO} ${DESTINATION}'
             }
         }
         stage('Clone rosdoc2') {
             steps {
-                checkout poll: false, scm: scmGit(branches: [[name: 'refs/heads/rkj-main']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'rosdoc2']], userRemoteConfigs: [[url: 'https://github.com/rkent/rosdoc2.git']])
+                checkout poll: false, scm: scmGit(branches: [[name: 'refs/heads/${ROSDOC2_BRANCH}']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'rosdoc2']], userRemoteConfigs: [[url: 'https://github.com/rkent/rosdoc2.git']])
             }
         }
         stage('Docker run rosdoc2') {
