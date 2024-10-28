@@ -8,13 +8,11 @@ pipeline {
     }
 
     stages {
-        /*
         stage('Docker build rosdoc2') {
             steps {
                 sh 'docker build -t rosdoc2:docker_farm /var/docker_farm/rosdoc2_humble'
             }
         }
-        */
         stage('Clone distroclone') {
             steps {
                 checkout poll: false, scm: scmGit(branches: [[name: 'refs/heads/main']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'distroclone']], userRemoteConfigs: [[name: 'origin', url: 'https://github.com/rkent/distroclone']])
