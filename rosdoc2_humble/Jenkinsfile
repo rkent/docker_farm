@@ -11,7 +11,7 @@ pipeline {
         /*
         stage('Docker build rosdoc2') {
             steps {
-                sh 'docker build -t rosdoc2:docker_farm /var/docker_farm/rosdoc2'
+                sh 'docker build -t rosdoc2:docker_farm /var/docker_farm/rosdoc2_humble'
             }
         }
         */

@@ -38,5 +38,5 @@ COPY run_rosdoc2.sh /usr/local/bin/run_rosdoc2
 COPY run_distroclone.sh /usr/local/bin/run_distroclone
 RUN useradd -u $uid -m $user
 
-WORKDIR /rosdoc2
+WORKDIR /workspace
 USER $user
