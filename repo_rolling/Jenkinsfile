@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    environment{
+        ROS_DISTRO = 'rolling'
+    }
+
+    stages {
+        stage('Docker build rosdoc2') {
+            steps {
+                sh 'docker build -t rosdoc2:$JOB_NAME /var/docker_farm/common/rosdoc2'
+            }
+        }
+        stage('Clone distroclone') {
+            steps {
+                checkout poll: false, scm: scmGit(branches: [[name: 'refs/heads/main']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'distroclone']], userRemoteConfigs: [[name: 'origin', url: 'https://github.com/rkent/distroclone']])
+            }
+        }
+        stage('Docker clone distro with distroclone') {
+            steps {
+                sh 'docker rm -f $JOB_NAME || true'
+                sh 'echo ROS_DISTRO is ${ROS_DISTRO}'
+                sh 'mkdir -p /data2/repos'
+                sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /data2:/data2 rosdoc2:$JOB_NAME run_distroclone ${ROS_DISTRO} /data2/repos'
+            }
+        }
+    }
+    post {
+        always {
+            sh 'docker stop $JOB_NAME || true'
+        }
+    }
+}
