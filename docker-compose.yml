@@ -85,7 +85,7 @@ services:
       # These ports are in format <host-port>:<container-port>
       - '8085:80' # Public HTTP Port
     volumes:
-      - /ros2/jenkins/workspace/pr-rosdoc2/docs_output:/usr/share/nginx/html
+      - /data2/prrosdoc2:/usr/share/nginx/html
     container_name: pr_rosdoc2_web
     hostname: pr_rosdoc2_web
 
