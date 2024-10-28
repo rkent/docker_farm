@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment{
-        ROS_DISTRO = 'rolling'
+        ROS_DISTRO = 'humble'
         ROSDOC2_BRANCH = 'pr-main'
     }
 
