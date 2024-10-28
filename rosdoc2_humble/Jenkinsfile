@@ -3,27 +3,13 @@ pipeline {
 
     environment{
         ROS_DISTRO = 'humble'
-        DESTINATION = 'checkout'
         ROSDOC2_BRANCH = 'rkj-main'
     }
 
     stages {
         stage('Docker build rosdoc2') {
             steps {
-                sh 'docker build -t rosdoc2:docker_farm /var/docker_farm/rosdoc2_humble'
-            }
-        }
-        stage('Clone distroclone') {
-            steps {
-                checkout poll: false, scm: scmGit(branches: [[name: 'refs/heads/main']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'distroclone']], userRemoteConfigs: [[name: 'origin', url: 'https://github.com/rkent/distroclone']])
-            }
-        }
-        /**/
-        stage('Docker clone distro with distroclone') {
-            steps {
-                sh 'docker rm -f rosdoc2_scan_humble || true'
-                sh 'echo ROS_DISTRO is ${ROS_DISTRO}'
-                sh 'docker run --rm --name rosdoc2_scan_humble -v $WORKSPACE:/workspace rosdoc2:docker_farm run_distroclone ${ROS_DISTRO} ${DESTINATION}'
+                sh 'docker build -t rosdoc2:$JOB_NAME /var/docker_farm/common/rosdoc2'
             }
         }
         stage('Clone rosdoc2') {
@@ -33,8 +19,8 @@ pipeline {
         }
         stage('Docker run rosdoc2') {
             steps {
-                sh 'docker rm -f rosdoc2_scan_humble || true'
-                sh 'docker run --rm --name rosdoc2_scan_humble -v $WORKSPACE:/workspace rosdoc2:docker_farm run_rosdoc2 "scan -p /workspace/${DESTINATION} -t 3600 -y /workspace/rosdoc2_humble/docs_ex.yaml -u https://rosdoc2.rosdabbler.com/${ROS_DISTRO}"'
+                sh 'docker rm -f $JOB_NAME || true'
+                sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /data2:/data2 rosdoc2:$JOB_NAME run_rosdoc2 "scan -p /data2/repos/$ROS_DISTRO -t 3600 -y docs_ex.yaml -u https://rosdoc2.rosdabbler.com/${ROS_DISTRO}"'
             }
         }
         /*
@@ -47,7 +33,7 @@ pipeline {
     }
     post {
         always {
-            sh 'docker stop rosdoc2_scan_humble || true'
+            sh 'docker stop $JOB_NAME || true'
         }
     }
 }
