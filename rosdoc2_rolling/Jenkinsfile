@@ -3,45 +3,37 @@ pipeline {
 
     environment{
         ROS_DISTRO = 'rolling'
-        DESTINATION = 'checkout'
         ROSDOC2_BRANCH = 'rkj-main'
     }
 
     stages {
-        stage('Clone distroclone') {
+        stage('Docker build rosdoc2') {
             steps {
-                checkout poll: false, scm: scmGit(branches: [[name: 'refs/heads/main']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'distroclone']], userRemoteConfigs: [[name: 'origin', url: 'https://github.com/rkent/distroclone']])
-            }
-        }
-        /**/
-        stage('Docker clone distro with distroclone') {
-            steps {
-                sh 'docker rm -f rosdoc2_scan_rolling || true'
-                sh 'docker run --rm --name rosdoc2_scan_rolling -v $WORKSPACE:/workspace rosdoc2:docker_farm run_distroclone ${ROS_DISTRO} ${DESTINATION}'
+                sh 'docker build -t rosdoc2:$JOB_NAME /var/docker_farm/common/rosdoc2'
             }
         }
         stage('Clone rosdoc2') {
             steps {
-                checkout poll: false, scm: scmGit(branches: [[name: 'refs/heads/${ROSDOC2_BRANCH}']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'rosdoc2']], userRemoteConfigs: [[url: 'https://github.com/rkent/rosdoc2.git/${ROS_DISTRO}']])
+                checkout poll: false, scm: scmGit(branches: [[name: "refs/heads/${ROSDOC2_BRANCH}"]], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'rosdoc2']], userRemoteConfigs: [[url: 'https://github.com/rkent/rosdoc2.git']])
             }
         }
         stage('Docker run rosdoc2') {
             steps {
-                sh 'docker rm -f rosdoc2_scan_rolling || true'
-                sh 'docker run --rm --name rosdoc2_scan_rolling -v $WORKSPACE:/workspace rosdoc2:docker_farm run_rosdoc2 "scan -p /workspace/checkout -t 3600 -y /workspace/rosdoc2_rolling/docs_ex.yaml -u https://rosdoc2.rosdabbler.com/rolling"'
+                sh 'docker rm -f $JOB_NAME || true'
+                sh 'rm -rf docs_build'
+                sh 'rm -rf docs_output'
+                sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /data2:/data2 rosdoc2:$JOB_NAME run_rosdoc2 "scan -p /data2/repos/$ROS_DISTRO -t 3600 -y rosdoc2_rolling/docs_ex.yaml -u https://rosdoc2.rosdabbler.com/${ROS_DISTRO}"'
             }
         }
-        /*
         stage('Sync website') {
             steps {
-                sh 'rsync -ra /ros2/jenkins/workspace/rosdoc2/docs_output /ros2/rosdoc2/'
+                sh 'rsync -a --delete $WORKSPACE/docs_output /data2/rosdoc2/${ROS_DISTRO}'
             }
         }
-        */
     }
     post {
         always {
-            sh 'docker stop rosdoc2_scan_rolling || true'
+            sh 'docker stop $JOB_NAME || true'
         }
     }
 }
