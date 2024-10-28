@@ -25,7 +25,7 @@ pipeline {
             steps {
                 sh 'docker rm -f rosdoc2_scan_humble || true'
                 sh 'echo ROS_DISTRO is ${ROS_DISTRO}'
-                sh 'docker run --rm --name rosdoc2_scan_humble -v $WORKSPACE:/rosdoc2 rosdoc2:docker_farm run_distroclone ${ROS_DISTRO} ${DESTINATION}'
+                sh 'docker run --rm --name rosdoc2_scan_humble -v $WORKSPACE:/workspace rosdoc2:docker_farm run_distroclone ${ROS_DISTRO} ${DESTINATION}'
             }
         }
         stage('Clone rosdoc2') {
@@ -36,7 +36,7 @@ pipeline {
         stage('Docker run rosdoc2') {
             steps {
                 sh 'docker rm -f rosdoc2_scan_humble || true'
-                sh 'docker run --rm --name rosdoc2_scan_humble -v $WORKSPACE:/rosdoc2 rosdoc2:docker_farm run_rosdoc2 "scan -p /rosdoc2/${DESTINATION} -t 3600 -y /rosdoc2/rosdoc2/docs_ex.yaml -u https://rosdoc2.rosdabbler.com/${ROS_DISTRO}"'
+                sh 'docker run --rm --name rosdoc2_scan_humble -v $WORKSPACE:/workspace rosdoc2:docker_farm run_rosdoc2 "scan -p /workspace/${DESTINATION} -t 3600 -y /workspace/rosdoc2_humble/docs_ex.yaml -u https://rosdoc2.rosdabbler.com/${ROS_DISTRO}"'
             }
         }
         /*
