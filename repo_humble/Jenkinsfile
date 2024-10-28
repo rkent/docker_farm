@@ -21,7 +21,7 @@ pipeline {
                 sh 'docker rm -f $JOB_NAME || true'
                 sh 'echo ROS_DISTRO is ${ROS_DISTRO}'
                 sh 'mkdir -p /data2/repos'
-                sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace rosdoc2:$JOB_NAME run_distroclone ${ROS_DISTRO} /data2/repos'
+                sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /data2:/data2 rosdoc2:$JOB_NAME run_distroclone ${ROS_DISTRO} /data2/repos'
             }
         }
     }
