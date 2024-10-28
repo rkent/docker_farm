@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Sync website') {
             steps {
-                sh 'rsync -a --delete $WORKSPACE/docs_output /data2/rosdoc2/${ROS_DISTRO}'
+                sh 'rsync -a --delete $WORKSPACE/docs_output/ /data2/rosdoc2/${ROS_DISTRO}'
             }
         }
     }
