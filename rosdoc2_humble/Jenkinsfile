@@ -25,13 +25,11 @@ pipeline {
                 sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /data2:/data2 rosdoc2:$JOB_NAME run_rosdoc2 "scan -p /data2/repos/$ROS_DISTRO -t 3600 -y rosdoc2_humble/docs_ex.yaml -u https://rosdoc2.rosdabbler.com/${ROS_DISTRO}"'
             }
         }
-        /*
         stage('Sync website') {
             steps {
-                sh 'rsync -ra /ros2/jenkins/workspace/rosdoc2/docs_output /ros2/rosdoc2/'
+                sh 'rsync -ra $WORKSPACE/docs_output /data2/rosdoc2/${ROS_DISTRO}'
             }
         }
-        */
     }
     post {
         always {
