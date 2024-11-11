@@ -1,0 +1,5 @@
+launch_ros:
+  source:
+    type: git
+    url: https://github.com/rkent/launch_ros.git
+    version: fix-rosdoc2
