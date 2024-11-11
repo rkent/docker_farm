@@ -13,3 +13,4 @@ if [[ $REPO_MERGE_FILE ]]; then
 else
     echo "Checking out $ROS_DISTRO to destination $DESTINATION"
     distroclone -d $ROS_DISTRO -p $DESTINATION
+fi
