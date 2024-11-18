@@ -89,6 +89,17 @@ services:
     container_name: pr_rosdoc2_web
     hostname: pr_rosdoc2_web
 
+  music_web:
+    build: './rosdoc2_web'
+    restart: unless-stopped
+    ports:
+      # These ports are in format <host-port>:<container-port>
+      - '8086:80' # Public HTTP Port
+    volumes:
+      - /data2/music:/usr/share/nginx/html
+    container_name: music_web
+    hostname: music_web
+
   jenkins:
     build: ./jenkins
     restart: unless-stopped
