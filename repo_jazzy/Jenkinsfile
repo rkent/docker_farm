@@ -1,0 +1,20 @@
+pipeline {
+    agent agent4
+
+    environment{
+        ROS_DISTRO = 'jazzy'
+    }
+
+    stages {
+        stage('Docker build') {
+            steps {
+                sh 'echo ROS_DISTRO is ${ROS_DISTRO}'
+            }
+        }
+    }
+    post {
+        always {
+            sh 'docker stop $JOB_NAME || true'
+        }
+    }
+}
