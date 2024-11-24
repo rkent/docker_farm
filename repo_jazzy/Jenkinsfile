@@ -12,9 +12,4 @@ pipeline {
             }
         }
     }
-    post {
-        always {
-            sh 'docker stop $JOB_NAME || true'
-        }
-    }
 }
