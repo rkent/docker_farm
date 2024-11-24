@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'local' }
+    agent { label 'ubuntu' }
 
     environment{
         ROS_DISTRO = 'rolling'
@@ -20,7 +20,7 @@ pipeline {
             steps {
                 sh 'docker rm -f $JOB_NAME || true'
                 sh 'echo ROS_DISTRO is ${ROS_DISTRO}'
-                sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /data2:/data2 rosdoc2:$JOB_NAME run_distroclone ${ROS_DISTRO} /data2/repos/${ROS_DISTRO} repo_rolling/repo_merge.yaml'
+                sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /srv:/srv rosdoc2:$JOB_NAME run_distroclone ${ROS_DISTRO} /srv/repos/${ROS_DISTRO} repo_rolling/repo_merge.yaml'
             }
         }
     }
