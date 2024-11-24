@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'local' }
+    agent { label 'external' }
 
     environment{
         ROS_DISTRO = 'humble'
@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Docker build rosdoc2') {
             steps {
-                sh 'docker build -t rosdoc2:$JOB_NAME /var/docker_farm/common/rosdoc2'
+                sh 'docker build -t rosdoc2:$JOB_NAME common/rosdoc2'
             }
         }
         stage('Clone distroclone') {
@@ -20,7 +20,7 @@ pipeline {
             steps {
                 sh 'docker rm -f $JOB_NAME || true'
                 sh 'echo ROS_DISTRO is ${ROS_DISTRO}'
-                sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /data2:/data2 rosdoc2:$JOB_NAME run_distroclone ${ROS_DISTRO} /data2/repos/${ROS_DISTRO}'
+                sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /srv:/srv rosdoc2:$JOB_NAME run_distroclone ${ROS_DISTRO} /srv/repos/${ROS_DISTRO}'
             }
         }
     }
