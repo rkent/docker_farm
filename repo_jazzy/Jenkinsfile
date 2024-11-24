@@ -1,5 +1,5 @@
 pipeline {
-    agent { agent4 }
+    agent { label 'agent4' }
 
     environment{
         ROS_DISTRO = 'jazzy'
