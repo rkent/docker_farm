@@ -52,7 +52,7 @@ services:
       # These ports are in format <host-port>:<container-port>
       - '8081:80' # Public HTTP Port
     volumes:
-      - /ros2/rosindex/_site:/usr/share/nginx/html
+      - /srv/rosindex/_site:/usr/share/nginx/html
     container_name: rosindex_web
     hostname: rosindex_web
 
