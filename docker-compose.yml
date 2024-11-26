@@ -21,8 +21,8 @@ services:
       # Uncomment this if IPv6 is not enabled on your host
       # DISABLE_IPV6: 'true'
     volumes:
-      - /ros2/docker_farm/data:/data
-      - /ros2/docker_farm/letsencrypt:/etc/letsencrypt
+      - /srv/proxy/data:/data
+      - /srv/proxy/letsencrypt:/etc/letsencrypt
     secrets:
       - db_password
     depends_on:
@@ -40,7 +40,7 @@ services:
       MYSQL_PASSWORD__FILE: /run/secrets/db_password
       MARIADB_AUTO_UPGRADE: '1'
     volumes:
-      - /ros2/docker_farm/mysql:/var/lib/mysql
+      - /srv/proxy/mysql:/var/lib/mysql
     secrets:
       - db_password
       - db_root_password
