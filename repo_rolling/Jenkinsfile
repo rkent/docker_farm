@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'ubuntu' }
+    agent { label 'external' }
 
     environment{
         ROS_DISTRO = 'rolling'
