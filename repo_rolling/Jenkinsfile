@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Docker build rosdoc2') {
             steps {
-                sh 'docker build -t rosdoc2:$JOB_NAME /var/docker_farm/common/rosdoc2'
+                sh 'docker build -t rosdoc2:$JOB_NAME common/rosdoc2'
             }
         }
         stage('Clone distroclone') {
