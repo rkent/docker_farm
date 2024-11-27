@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'local' }
+    agent { label 'ubuntu' }
     stages {
         stage('Clone') {
             steps {
@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Sync website') {
             steps {
-                sh 'rsync -ra --del /ros2/jenkins/workspace/rosindex/_site /ros2/rosindex/'
+                sh 'rsync -ra --del _site /srv/rosindex/'
             }
         }
     }

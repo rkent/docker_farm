@@ -96,7 +96,7 @@ services:
       # These ports are in format <host-port>:<container-port>
       - '8086:80' # Public HTTP Port
     volumes:
-      - /data2/music:/usr/share/nginx/html
+      - /srv/music:/usr/share/nginx/html
     container_name: music_web
     hostname: music_web
 
@@ -111,7 +111,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /srv/disks/ros2:/ros2
-      - /srv/disks/data2:/data2
       - ./:/var/docker_farm
     group_add:
       - 998 #docker group id

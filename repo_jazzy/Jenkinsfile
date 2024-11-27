@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'external' }
+    agent { label 'ubuntu' }
 
     environment{
         ROS_DISTRO = 'jazzy'
