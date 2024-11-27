@@ -22,12 +22,12 @@ pipeline {
                 sh 'docker rm -f $JOB_NAME || true'
                 sh 'rm -rf docs_build'
                 sh 'rm -rf docs_output'
-                sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /data2:/data2 rosdoc2:$JOB_NAME run_rosdoc2 "scan -p /data2/repos/$ROS_DISTRO -t 3600 -u https://prrosdoc2.rosdabbler.com/${ROS_DISTRO}"'
+                sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /srv:/srv rosdoc2:$JOB_NAME run_rosdoc2 "scan -p /srv/repos/$ROS_DISTRO -t 3600 -u https://prrosdoc2.rosdabbler.com/${ROS_DISTRO}"'
             }
         }
         stage('Sync website') {
             steps {
-                sh 'rsync -a --delete $WORKSPACE/docs_output/ /data2/prrosdoc2/${ROS_DISTRO}'
+                sh 'rsync -a --delete $WORKSPACE/docs_output/ /srv/prrosdoc2/${ROS_DISTRO}'
             }
         }
     }
