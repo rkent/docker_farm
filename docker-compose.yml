@@ -110,8 +110,8 @@ services:
       - '50000:50000'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /srv/disks/ros2:/ros2
       - ./:/var/docker_farm
+      - /srv:/srv
     group_add:
       - 998 #docker group id
     # JENKINS_HOME should point to a directory that it the same in host and container.
