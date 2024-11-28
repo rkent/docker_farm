@@ -111,6 +111,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./:/var/docker_farm
+      - /srv/disks/ros2:/ros2
       - /srv:/srv
     group_add:
       - 998 #docker group id
