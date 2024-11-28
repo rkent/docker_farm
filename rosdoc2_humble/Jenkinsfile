@@ -22,7 +22,7 @@ pipeline {
                 sh 'docker rm -f $JOB_NAME || true'
                 sh 'rm -rf docs_build'
                 sh 'rm -rf docs_output'
-                sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /srv:/srv rosdoc2:$JOB_NAME run_rosdoc2 "scan -p /srv/repos/$ROS_DISTRO -t 3600 -y rosdoc2_humble/docs_ex.yaml -u https://rosdoc2.rosdabbler.com/${ROS_DISTRO}"'
+                sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /srv:/srv rosdoc2:$JOB_NAME run_rosdoc2 "scan -p /srv/repos/$ROS_DISTRO -o /srv/do-dev/$ROS_DISTRO -t 3600 -y rosdoc2_humble/docs_ex.yaml -u https://rosdoc2.rosdabbler.com/${ROS_DISTRO}"'
             }
         }
         stage('Sync website') {
