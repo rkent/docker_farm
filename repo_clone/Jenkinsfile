@@ -18,7 +18,7 @@ pipeline {
                 sh 'echo ROS_DISTRO is ${ROS_DISTRO}'
                 sh 'echo REPO_MERGE_FILE is ${REPO_MERGE_FILE}'
                 sh 'echo DESTINSTION is ${DESTINATION}'
-                sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /srv:/srv rosdoc2:$JOB_NAME run_distroclone ${ROS_DISTRO} /srv/repos/${ROS_DISTRO} ${REPO_MERGE_FILE}'
+                sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /srv:/srv distro_clone:$JOB_NAME run_distroclone ${ROS_DISTRO} /srv/repos/${ROS_DISTRO} ${REPO_MERGE_FILE}'
             }
         }
     }
