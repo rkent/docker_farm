@@ -9,8 +9,8 @@ python3 -m pip install osrf-pycommon
 python3 -m pip install ./distroclone
 if [[ $REPO_MERGE_FILE ]]; then
     echo "Checking out $ROS_DISTRO to destination $DESTINATION merging $REPO_MERGE_FILE"
-    distroclone -d $ROS_DISTRO -p $DESTINATION -c $REPO_MERGE_FILE
+    distroclone -d $ROS_DISTRO -p $DESTINATION/$ROS_DISTRO -c $REPO_MERGE_FILE
 else
     echo "Checking out $ROS_DISTRO to destination $DESTINATION"
-    distroclone -d $ROS_DISTRO -p $DESTINATION
+    distroclone -d $ROS_DISTRO -p $DESTINATION/$ROS_DISTRO
 fi
