@@ -9,6 +9,7 @@ pipeline {
         DOCS_EX = 'common/rosdoc2/empty.yaml'
         TIMEOUT = '3600'
         RSYNC_OPTIONS = ''
+        DESTINATION = '/srv/rosdoc2/'
     }
     */
 
@@ -27,9 +28,8 @@ pipeline {
             steps {
                 sh 'docker rm -f $JOB_NAME || true'
                 sh 'rm -rf docs_build'
-                sh 'rm -rf docs_output'
                 sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /srv:/srv rosdoc2:$JOB_NAME run_rosdoc2 \
-                     "scan -p /srv/repos/$ROS_DISTRO -t $TIMEOUT -m $MAX_PACKAGES -y $DOCS_EX -u https://rosdoc2.rosdabbler.com/${ROS_DISTRO}"'
+                     "scan -p /srv/repos/$ROS_DISTRO -t $TIMEOUT -m $MAX_PACKAGES -o $DESTINATION -y $DOCS_EX -u https://rosdoc2.rosdabbler.com/${ROS_DISTRO}"'
             }
         }
         stage('Sync website') {
