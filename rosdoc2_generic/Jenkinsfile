@@ -8,6 +8,7 @@ pipeline {
         MAX_PACKAGES = '0'
         DOCS_EX = 'common/rosdoc2/empty.yaml'
         TIMEOUT = '3600'
+        RSYNC_OPTIONS = ''
     }
     */
 
@@ -33,7 +34,7 @@ pipeline {
         }
         stage('Sync website') {
             steps {
-                sh 'rsync -a --info=progress2 --delete $WORKSPACE/docs_output/ /srv/rosdoc2/${ROS_DISTRO}'
+                sh 'rsync -a $RSYNC_OPTIONS $WORKSPACE/docs_output/ /srv/rosdoc2/${ROS_DISTRO}'
             }
         }
     }
