@@ -29,7 +29,7 @@ pipeline {
                 sh 'docker rm -f $JOB_NAME || true'
                 sh 'rm -rf docs_build'
                 sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /srv:/srv rosdoc2:$JOB_NAME run_rosdoc2 \
-                     "scan -p $REPOS/$ROS_DISTRO -t $TIMEOUT -m $MAX_PACKAGES -o $DESTINATION/$ROS_DISTRO -y $DOCS_EX -u https://rosdoc2.rosdabbler.com/${ROS_DISTRO}"'
+                     "scan -p $REPOS/$ROS_DISTRO -t $TIMEOUT -m $MAX_PACKAGES -o $DESTINATION/$ROS_DISTRO -y $DOCS_EX -u $BASE_URL/${ROS_DISTRO}"'
             }
         }
     }
