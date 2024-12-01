@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Docker clone distro with distroclone') {
             steps {
-                sh 'docker rm -f $JOB_NAME || true'
+                sh 'docker rm -f $JOB_NAME || true 2>/dev/null'
                 sh 'echo ROS_DISTRO is ${ROS_DISTRO}'
                 sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /srv:/srv rosdoc2:$JOB_NAME run_distroclone ${ROS_DISTRO} /srv/repos/${ROS_DISTRO}'
             }
@@ -22,7 +22,7 @@ pipeline {
     }
     post {
         always {
-            sh 'docker stop $JOB_NAME || true'
+            sh 'docker stop $JOB_NAME || true 2>/dev/null'
         }
     }
 }
