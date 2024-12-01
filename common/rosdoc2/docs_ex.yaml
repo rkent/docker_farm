@@ -1,0 +1,240 @@
+---
+bad-rosdoc2-yaml:
+  options: {}
+  packages:
+    point_cloud_transport:
+      builders:
+        - sphinx:
+            sphinx_sourcedir: null
+    message_filters:
+      settings:
+        python_source: 'src/message_filters'
+
+sphinx-errors:
+  options: {}
+  packages:
+    ign_rviz_plugins:
+      settings:
+        disable_breathe: true
+        show_doxygen_html: true
+    avt_vimba_camera:
+      settings:
+        disable_breathe: true
+        show_doxygen_html: true
+    ecl_geometry:
+      settings:
+        disable_breathe: true
+        show_doxygen_html: true
+    ecl_converters:
+      settings:
+        disable_breathe: true
+        show_doxygen_html: true
+    ecl_containers:
+      settings:
+        disable_breathe: true
+        show_doxygen_html: true
+    rmf_visualization_schedule:
+      settings:
+        disable_breathe: true
+        show_doxygen_html: true
+    magic_enum:
+      settings:
+        disable_breathe: true
+        show_doxygen_html: true
+
+big-packages-with-external-docs:
+  options: {}
+  packages:
+    pinocchio:
+      settings:
+        never_run_doxygen: true
+        never_run_sphinx_apidoc: true
+      builders:
+        - sphinx:
+            external_doc_url: "https://gepettoweb.laas.fr/doc/stack-of-tasks/pinocchio/master/doxygen-html/"
+    fastrtps:
+      settings:
+        never_run_doxygen: true
+        never_run_sphinx_apidoc: true
+      builders:
+        - sphinx:
+            external_doc_url: "https://eprosima.com/index.php/products-all/eprosima-fast-dds"
+    beluga:
+      settings:
+        never_run_doxygen: true
+        never_run_sphinx_apidoc: true
+      builders:
+        - sphinx:
+            external_doc_url: "https://ekumen-os.github.io/beluga/"
+    ign_rviz:
+      settings:
+        never_run_doxygen: true
+        never_run_sphinx_apidoc: true
+      builders:
+        - sphinx:
+            external_doc_url: "https://github.com/gazebosim/gz-rviz/wiki"
+    mp2p_icp:
+      settings:
+        never_run_doxygen: true
+        never_run_sphinx_apidoc: true
+      builders:
+        - sphinx:
+            external_doc_url: "https://docs.mola-slam.org/latest/module-mp2p-icp.html"
+    grbl_ros:
+      settings:
+        never_run_doxygen: true
+        never_run_sphinx_apidoc: true
+      builders:
+        - sphinx:
+            external_doc_url: "https://flynneva.github.io/grbl_ros/"
+    fields2cover:
+      settings:
+        never_run_doxygen: true
+        never_run_sphinx_apidoc: true
+      builders:
+        - sphinx:
+            external_doc_url: "https://fields2cover.github.io/"
+    depthai-ros:
+      settings:
+        never_run_doxygen: true
+        never_run_sphinx_apidoc: true
+      builders:
+        - sphinx:
+            external_doc_url: "https://docs.luxonis.com/software/ros/depthai-ros/"
+
+docs-support:
+  options: {}
+  packages:
+    tracetools_analysis:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rosidl_runtime_c:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rosidl_typesupport_c:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    mola_navstate_fg:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rmw_dds_common:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    robotraconteur:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rcpputils:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    py_trees_ros:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    tracetools_test:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    osrf_pycommon:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rosidl_typesupport_fastrtps_cpp:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rosidl_typesupport_introspection_cpp:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    mola_lidar_odometry:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rosidl_typesupport_cpp:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    beluga_ros:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rviz_visual_testing_framework:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    libcaer:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rosidl_typesupport_fastrtps_c:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    cartographer:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    grbl_ros:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rosidl_typesupport_introspection_c:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    rosidl_runtime_cpp:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    usb_cam:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    mvsim:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    beluga_benchmark:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    beluga_amcl:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    mola_navstate_fuse:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    gtest_vendor:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    py_trees_js:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    cyclonedds:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    py_trees:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    gmock_vendor:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+    bno055:
+      builders:
+        - sphinx:
+            user_doc_dir: "docs"
+
