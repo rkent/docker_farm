@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Docker clone distro with distroclone') {
             steps {
-                sh 'docker rm -f $JOB_NAME || true 2>/dev/null'
+                sh 'docker rm -f $JOB_NAME 2>/dev/null || true'
                 sh 'echo ROS_DISTRO is ${ROS_DISTRO}'
                 sh 'echo REPO_MERGE_FILE is ${REPO_MERGE_FILE}'
                 sh 'echo DESTINATION is ${DESTINATION}'
