@@ -22,7 +22,7 @@ pipeline {
     }
     post {
         always {
-            sh 'docker stop $JOB_NAME || true 2>/dev/null'
+            sh 'docker stop $JOB_NAME 2>/dev/null || true'
         }
     }
 }
