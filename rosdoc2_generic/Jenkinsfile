@@ -14,6 +14,11 @@ pipeline {
     */
 
     stages {
+        stage('Build info') {
+            steps {
+                sh 'env'
+            }
+        }
         stage('Docker build rosdoc2') {
             steps {
                 sh 'docker build -t rosdoc2:$JOB_NAME common/rosdoc2'
