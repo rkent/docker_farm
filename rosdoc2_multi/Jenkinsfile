@@ -9,6 +9,7 @@ pipeline {
         string(name: 'MAX_PACKAGES', defaultValue: '10000', description: 'Max number of packages to process')
         string(name: 'TIMEOUT', defaultValue: '3600', description: 'Max seconds to allow per package')
         string(name: 'ROSDOC2_BRANCH', defaultValue: 'rkj-main', description: 'git rosdoc2 branch')
+        string(name: 'BASE_URL', defaultValue: 'https://rosdoc2.rosdabbler.com', description: 'Base URL for served files (without distro)')
     }
 
     stages {
