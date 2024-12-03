@@ -4,7 +4,7 @@ pipeline {
     parameters {
         string(name: 'ROS_DISTRO', defaultValue: 'rolling', description: 'ROS distribution name')
         string(name: 'DESTINATION', defaultValue: '/srv/rosdoc2/', description: 'Parent (with child ROS_DISTRO) where to put results')
-        string(name: 'DOCS_EX', defaultValue: 'common/rosdoc2/empty.yaml', description: 'File with modified rosdoc2.yaml')
+        string(name: 'DOCS_EX', defaultValue: 'common/rosdoc2/docs_ex.yaml', description: 'File with modified rosdoc2.yaml')
         string(name: 'REPOS', defaultValue: '/srv/repos', description: 'Path to repositories')
         string(name: 'MAX_PACKAGES', defaultValue: '10000', description: 'Max number of packages to process')
         string(name: 'TIMEOUT', defaultValue: '3600', description: 'Max seconds to allow per package')
@@ -33,7 +33,7 @@ pipeline {
                 sh 'docker rm -f $JOB_NAME 2>/dev/null || true'
                 sh 'rm -rf docs_build'
                 sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /srv:/srv rosdoc2:$JOB_NAME run_rosdoc2 \
-                     "scan -p $REPOS/$ROS_DISTRO -t $TIMEOUT -m $MAX_PACKAGES -o $DESTINATION/$ROS_DISTRO -y $DOCS_EX -u $BASE_URL/${ROS_DISTRO}"'
+                     "scan -p $REPOS/$ROS_DISTRO -t $TIMEOUT -m $MAX_PACKAGES -o $DESTINATION/$ROS_DISTRO -y $DOCS_EX -u $BASE_URL/${ROS_DISTRO} -s $SUBPROCESSES"'
             }
         }
     }
