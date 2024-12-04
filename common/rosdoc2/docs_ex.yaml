@@ -51,56 +51,56 @@ big-packages-with-external-docs:
         never_run_sphinx_apidoc: true
       builders:
         - sphinx:
-            external_doc_url: "https://gepettoweb.laas.fr/doc/stack-of-tasks/pinocchio/master/doxygen-html/"
+            user_doc_dir: null
     fastrtps:
       settings:
         never_run_doxygen: true
         never_run_sphinx_apidoc: true
       builders:
         - sphinx:
-            external_doc_url: "https://eprosima.com/index.php/products-all/eprosima-fast-dds"
+            user_doc_dir: null
     beluga:
       settings:
         never_run_doxygen: true
         never_run_sphinx_apidoc: true
       builders:
         - sphinx:
-            external_doc_url: "https://ekumen-os.github.io/beluga/"
+            user_doc_dir: null
     ign_rviz:
       settings:
         never_run_doxygen: true
         never_run_sphinx_apidoc: true
       builders:
         - sphinx:
-            external_doc_url: "https://github.com/gazebosim/gz-rviz/wiki"
+            user_doc_dir: null
     mp2p_icp:
       settings:
         never_run_doxygen: true
         never_run_sphinx_apidoc: true
       builders:
         - sphinx:
-            external_doc_url: "https://docs.mola-slam.org/latest/module-mp2p-icp.html"
+            user_doc_dir: null
     grbl_ros:
       settings:
         never_run_doxygen: true
         never_run_sphinx_apidoc: true
       builders:
         - sphinx:
-            external_doc_url: "https://flynneva.github.io/grbl_ros/"
+            user_doc_dir: null
     fields2cover:
       settings:
         never_run_doxygen: true
         never_run_sphinx_apidoc: true
       builders:
         - sphinx:
-            external_doc_url: "https://fields2cover.github.io/"
+            user_doc_dir: null
     depthai-ros:
       settings:
         never_run_doxygen: true
         never_run_sphinx_apidoc: true
       builders:
         - sphinx:
-            external_doc_url: "https://docs.luxonis.com/software/ros/depthai-ros/"
+            user_doc_dir: null
 
 docs-support:
   options: {}
