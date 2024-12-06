@@ -1,0 +1,27 @@
+pipeline {
+    agent { label 'ubuntu' }
+    stages {
+        stage('Clone') {
+            steps {
+                sh 'env'
+                git branch: 'ros2', url: 'https://github.com/ros-infrastructure/rosindex'
+            }
+        }
+        stage('Build Image') {
+            steps {
+                sh 'docker/build.sh'
+            }
+        }
+        stage('Build website') {
+            steps {
+                sh 'rm -rf _remotes'
+                sh 'docker/run.sh make build'
+            }
+        }
+        stage('Sync website') {
+            steps {
+                sh 'rsync -ra --del _site /srv/upindex/'
+            }
+        }
+    }
+}
