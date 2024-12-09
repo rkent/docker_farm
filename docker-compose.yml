@@ -53,6 +53,7 @@ services:
       - '8081:80' # Public HTTP Port
     volumes:
       - /srv/rosindex/_site:/usr/share/nginx/html
+      - /srv:/srv
     container_name: rosindex_web
     hostname: rosindex_web
 
@@ -64,6 +65,7 @@ services:
       - '8084:80' # Public HTTP Port
     volumes:
       - /srv/devindex/_site:/usr/share/nginx/html
+      - /srv:/srv
     container_name: devindex_web
     hostname: devindex_web
 
@@ -75,6 +77,7 @@ services:
       - '8082:80' # Public HTTP Port
     volumes:
       - /srv/rosdoc2:/usr/share/nginx/html
+      - /srv:/srv
     container_name: rosdoc2_web
     hostname: rosdoc2_web
 
@@ -86,6 +89,7 @@ services:
       - '8085:80' # Public HTTP Port
     volumes:
       - /srv/prrosdoc2:/usr/share/nginx/html
+      - /srv:/srv
     container_name: pr_rosdoc2_web
     hostname: pr_rosdoc2_web
 
@@ -97,6 +101,7 @@ services:
       - '8086:80' # Public HTTP Port
     volumes:
       - /srv/music:/usr/share/nginx/html
+      - /srv:/srv
     container_name: music_web
     hostname: music_web
 
