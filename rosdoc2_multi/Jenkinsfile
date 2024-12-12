@@ -10,6 +10,7 @@ pipeline {
         string(name: 'ROSDOC2_BRANCH', defaultValue: 'rkj-main', description: 'git rosdoc2 branch')
         string(name: 'BASE_URL', defaultValue: 'https://rosdoc2.rosdabbler.com', description: 'Base URL for served files (without distro)')
         string(name: 'AGENT', defaultValue: 'ubuntu', description: 'Agent label')
+        string(name: 'REPO_URL', defaultValue: 'https://github.com/rkent/rosdoc2.git', description: 'Repo source URL')
     }
 
     agent { label "${params.AGENT}" }
@@ -27,7 +28,7 @@ pipeline {
         }
         stage('Clone rosdoc2') {
             steps {
-                checkout poll: false, scm: scmGit(branches: [[name: "refs/heads/${ROSDOC2_BRANCH}"]], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'rosdoc2']], userRemoteConfigs: [[url: 'https://github.com/rkent/rosdoc2.git']])
+                checkout poll: false, scm: scmGit(branches: [[name: "refs/heads/${ROSDOC2_BRANCH}"]], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'rosdoc2']], userRemoteConfigs: [[url: "${REPO_URL}"]])
             }
         }
         stage('Docker run rosdoc2') {
