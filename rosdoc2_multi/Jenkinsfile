@@ -11,6 +11,7 @@ pipeline {
         string(name: 'BASE_URL', defaultValue: 'https://rosdoc2.rosdabbler.com', description: 'Base URL for served files (without distro)')
         string(name: 'AGENT', defaultValue: 'ubuntu', description: 'Agent label')
         string(name: 'REPO_URL', defaultValue: 'https://github.com/rkent/rosdoc2.git', description: 'Repo source URL')
+        string(name: 'SUBPROCESSES', defaultValue: '6', description: 'Subprocess count')
     }
 
     agent { label "${params.AGENT}" }
