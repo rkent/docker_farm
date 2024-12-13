@@ -182,10 +182,10 @@ docs-support:
     #  builders:
     #    - sphinx:
     #        user_doc_dir: "docs"
-    grbl_ros:
-      builders:
-        - sphinx:
-            user_doc_dir: "docs"
+    #grbl_ros:
+    #  builders:
+    #    - sphinx:
+    #        user_doc_dir: "docs"
     rosidl_typesupport_introspection_c:
       builders:
         - sphinx:
@@ -194,14 +194,14 @@ docs-support:
       builders:
         - sphinx:
             user_doc_dir: "docs"
-    usb_cam:
-      builders:
-        - sphinx:
-            user_doc_dir: "docs"
-    mvsim:
-      builders:
-        - sphinx:
-            user_doc_dir: "docs"
+    #usb_cam:
+    #  builders:
+    #    - sphinx:
+    #        user_doc_dir: "docs"
+    #mvsim:
+    #  builders:
+    #    - sphinx:
+    #        user_doc_dir: "docs"
     beluga_benchmark:
       builders:
         - sphinx:
@@ -214,10 +214,10 @@ docs-support:
       builders:
         - sphinx:
             user_doc_dir: "docs"
-    gtest_vendor:
-      builders:
-        - sphinx:
-            user_doc_dir: "docs"
+    #gtest_vendor:
+    #  builders:
+    #    - sphinx:
+    #        user_doc_dir: "docs"
     py_trees_js:
       builders:
         - sphinx:
@@ -230,11 +230,11 @@ docs-support:
       builders:
         - sphinx:
             user_doc_dir: "docs"
-    gmock_vendor:
-      builders:
-        - sphinx:
-            user_doc_dir: "docs"
-    bno055:
-      builders:
-        - sphinx:
-            user_doc_dir: "docs"
+    #gmock_vendor:
+    #  builders:
+    #    - sphinx:
+    #        user_doc_dir: "docs"
+    #bno055:
+    #  builders:
+    #    - sphinx:
+    #        user_doc_dir: "docs"
