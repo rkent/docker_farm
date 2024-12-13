@@ -158,10 +158,10 @@ docs-support:
       builders:
         - sphinx:
             user_doc_dir: "docs"
-    rosidl_typesupport_cpp:
-      builders:
-        - sphinx:
-            user_doc_dir: "docs"
+#    rosidl_typesupport_cpp:
+#      builders:
+#        - sphinx:
+#            user_doc_dir: "docs"
     beluga_ros:
       builders:
         - sphinx:
@@ -170,18 +170,18 @@ docs-support:
       builders:
         - sphinx:
             user_doc_dir: "docs"
-    libcaer:
-      builders:
-        - sphinx:
-            user_doc_dir: "docs"
-    rosidl_typesupport_fastrtps_c:
-      builders:
-        - sphinx:
-            user_doc_dir: "docs"
-    cartographer:
-      builders:
-        - sphinx:
-            user_doc_dir: "docs"
+    #libcaer:
+    #  builders:
+    #    - sphinx:
+    #        user_doc_dir: "docs"
+    #rosidl_typesupport_fastrtps_c:
+    #  builders:
+    #    - sphinx:
+    #        user_doc_dir: "docs"
+    #cartographer:
+    #  builders:
+    #    - sphinx:
+    #        user_doc_dir: "docs"
     grbl_ros:
       builders:
         - sphinx:
