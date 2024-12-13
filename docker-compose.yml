@@ -69,17 +69,17 @@ services:
     container_name: devindex_web
     hostname: devindex_web
 
-  rosdoc2_web:
+  dev_rosdoc2_web:
     build: './rosdoc2_web'
     restart: unless-stopped
     ports:
       # These ports are in format <host-port>:<container-port>
       - '8082:80' # Public HTTP Port
     volumes:
-      - /srv/rosdoc2:/usr/share/nginx/html
+      - /srv/dev-rosdoc2:/usr/share/nginx/html
       - /srv:/srv
-    container_name: rosdoc2_web
-    hostname: rosdoc2_web
+    container_name: dev_rosdoc2_web
+    hostname: dev_rosdoc2_web
 
   pr_rosdoc2_web:
     build: './rosdoc2_web'
@@ -88,10 +88,22 @@ services:
       # These ports are in format <host-port>:<container-port>
       - '8085:80' # Public HTTP Port
     volumes:
-      - /srv/prrosdoc2:/usr/share/nginx/html
+      - /srv/pr-rosdoc2:/usr/share/nginx/html
       - /srv:/srv
     container_name: pr_rosdoc2_web
     hostname: pr_rosdoc2_web
+
+  base_rosdoc2_web:
+    build: './rosdoc2_web'
+    restart: unless-stopped
+    ports:
+      # These ports are in format <host-port>:<container-port>
+      - '8087:80' # Public HTTP Port
+    volumes:
+      - /srv/base-rosdoc2:/usr/share/nginx/html
+      - /srv:/srv
+    container_name: base_rosdoc2_web
+    hostname: base_rosdoc2_web
 
   music_web:
     build: './rosdoc2_web'
