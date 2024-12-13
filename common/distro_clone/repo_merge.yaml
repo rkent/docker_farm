@@ -3,3 +3,35 @@ launch_ros:
     type: git
     url: https://github.com/rkent/launch_ros.git
     version: fix-rosdoc2
+rosidl:
+  source:
+    type: git
+    url: https://github.com/rkent/rosidl.git
+    version: set-docs
+rosidl_typesupport:
+  source:
+    type: git
+    url: https://github.com/rkent/rosidl_typesupport.git
+    version: set-docs
+rmw_dds_common:
+  source:
+    type: git
+    url: https://github.com/rkent/rmw_dds_common.get
+    version: set-docs
+robotraconteur:
+  source:
+    type: git
+    url: https://github.com/rkent/robotraconteur.git
+    version: set-docs
+rcpputils:
+  source:
+    type: git
+    url: https://github.com/rkent/rcpputils
+    version: set-docs
+rosidl_typesupport_fastrtps:
+  source:
+    type: git
+    url: https://github.com/ros2/rosidl_typesupport_fastrtps.git
+    version: set-docs
+
+
