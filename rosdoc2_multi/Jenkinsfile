@@ -2,7 +2,7 @@ pipeline {
 
     parameters {
         string(name: 'ROS_DISTRO', defaultValue: 'rolling', description: 'ROS distribution name')
-        string(name: 'DESTINATION', defaultValue: '/srv/rosdoc2/', description: 'Parent (with child ROS_DISTRO) where to put results')
+        string(name: 'DESTINATION', defaultValue: '/srv/dev-rosdoc2/', description: 'Parent (with child ROS_DISTRO) where to put results')
         string(name: 'DOCS_EX', defaultValue: 'common/rosdoc2/docs_ex.yaml', description: 'File with modified rosdoc2.yaml')
         string(name: 'REPOS', defaultValue: '/srv/repos', description: 'Path to repositories')
         string(name: 'MAX_PACKAGES', defaultValue: '10000', description: 'Max number of packages to process')

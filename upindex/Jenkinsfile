@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Sync website') {
             steps {
-                sh 'rsync --stats -ra --del _site /srv/upindex/'
+                sh 'rsync --stats -ra --del _site /srv/base-rosindex/'
             }
         }
     }
