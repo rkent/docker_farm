@@ -45,31 +45,43 @@ services:
       - db_password
       - db_root_password
 
-  rosindex_web:
+  base-rosindex_web:
+    image: 'nginx:1.27'
+    restart: unless-stopped
+    ports:
+      # These ports are in format <host-port>:<container-port>
+      - '8089:80' # Public HTTP Port
+    volumes:
+      - /srv/base-rosindex/_site:/usr/share/nginx/html
+      - /srv:/srv
+    container_name: base-rosindex_web
+    hostname: base-rosindex_web
+
+  pr-rosindex_web:
     image: 'nginx:1.27'
     restart: unless-stopped
     ports:
       # These ports are in format <host-port>:<container-port>
       - '8081:80' # Public HTTP Port
     volumes:
-      - /srv/rosindex/_site:/usr/share/nginx/html
+      - /srv/pr-rosindex/_site:/usr/share/nginx/html
       - /srv:/srv
-    container_name: rosindex_web
-    hostname: rosindex_web
+    container_name: pr-rosindex_web
+    hostname: pr-rosindex_web
 
-  devindex_web:
+  dev-rosindex_web:
     image: 'nginx:1.27'
     restart: unless-stopped
     ports:
       # These ports are in format <host-port>:<container-port>
       - '8084:80' # Public HTTP Port
     volumes:
-      - /srv/devindex/_site:/usr/share/nginx/html
+      - /srv/dev-rosindex/_site:/usr/share/nginx/html
       - /srv:/srv
-    container_name: devindex_web
-    hostname: devindex_web
+    container_name: dev-rosindex_web
+    hostname: dev-rosindex_web
 
-  dev_rosdoc2_web:
+  dev-rosdoc2_web:
     build: './rosdoc2_web'
     restart: unless-stopped
     ports:
@@ -78,10 +90,10 @@ services:
     volumes:
       - /srv/dev-rosdoc2:/usr/share/nginx/html
       - /srv:/srv
-    container_name: dev_rosdoc2_web
-    hostname: dev_rosdoc2_web
+    container_name: dev-rosdoc2_web
+    hostname: dev-rosdoc2_web
 
-  pr_rosdoc2_web:
+  pr-rosdoc2_web:
     build: './rosdoc2_web'
     restart: unless-stopped
     ports:
@@ -90,10 +102,10 @@ services:
     volumes:
       - /srv/pr-rosdoc2:/usr/share/nginx/html
       - /srv:/srv
-    container_name: pr_rosdoc2_web
-    hostname: pr_rosdoc2_web
+    container_name: pr-rosdoc2_web
+    hostname: pr-rosdoc2_web
 
-  base_rosdoc2_web:
+  base-rosdoc2_web:
     build: './rosdoc2_web'
     restart: unless-stopped
     ports:
@@ -102,8 +114,8 @@ services:
     volumes:
       - /srv/base-rosdoc2:/usr/share/nginx/html
       - /srv:/srv
-    container_name: base_rosdoc2_web
-    hostname: base_rosdoc2_web
+    container_name: base-rosdoc2_web
+    hostname: base-rosdoc2_web
 
   music_web:
     build: './rosdoc2_web'
