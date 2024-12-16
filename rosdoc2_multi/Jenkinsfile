@@ -12,6 +12,7 @@ pipeline {
         string(name: 'AGENT', defaultValue: 'ubuntu', description: 'Agent label')
         string(name: 'REPO_URL', defaultValue: 'https://github.com/rkent/rosdoc2.git', description: 'Repo source URL')
         string(name: 'SUBPROCESSES', defaultValue: '8', description: 'Subprocess count')
+        string(name: 'CREFS', defaultValue: '/srv/dev-crefs')
     }
 
     agent { label "${params.AGENT}" }
@@ -37,7 +38,7 @@ pipeline {
                 sh 'docker rm -f $JOB_NAME 2>/dev/null || true'
                 sh 'rm -rf docs_build'
                 sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /srv:/srv rosdoc2:$JOB_NAME run_rosdoc2 \
-                     "scan -p $REPOS/$ROS_DISTRO -t $TIMEOUT -m $MAX_PACKAGES -o $DESTINATION/$ROS_DISTRO -y $DOCS_EX -u $BASE_URL/${ROS_DISTRO} -s $SUBPROCESSES"'
+                     "scan -p $REPOS/$ROS_DISTRO -t $TIMEOUT -m $MAX_PACKAGES -o $DESTINATION/$ROS_DISTRO -y $DOCS_EX -u $BASE_URL/${ROS_DISTRO} -s $SUBPROCESSES -c /srv/${CREFS}/${ROS_DISTRO}"'
             }
         }
     }
