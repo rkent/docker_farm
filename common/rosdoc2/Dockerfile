@@ -34,6 +34,7 @@ RUN apt install -y --no-install-recommends \
   python3-yaml \
   git
 
+RUN echo "GIT_COMMIT=$(git rev-parse HEAD)"
 COPY run_rosdoc2.sh /usr/local/bin/run_rosdoc2
 RUN useradd -u $uid -m $user
 
