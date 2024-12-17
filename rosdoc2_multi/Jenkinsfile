@@ -2,20 +2,23 @@ pipeline {
 
     parameters {
         string(name: 'ROS_DISTRO', defaultValue: 'rolling', description: 'ROS distribution name')
-        string(name: 'DESTINATION', defaultValue: '/srv/dev-rosdoc2/', description: 'Parent (with child ROS_DISTRO) where to put results')
+        string(name: 'DESTINATION', defaultValue: 'dev', description: 'Type of build'
         string(name: 'DOCS_EX', defaultValue: 'common/rosdoc2/docs_ex.yaml', description: 'File with modified rosdoc2.yaml')
         string(name: 'REPOS', defaultValue: '/srv/repos', description: 'Path to repositories')
         string(name: 'MAX_PACKAGES', defaultValue: '10000', description: 'Max number of packages to process')
         string(name: 'TIMEOUT', defaultValue: '3600', description: 'Max seconds to allow per package')
         string(name: 'ROSDOC2_BRANCH', defaultValue: 'rkj-main', description: 'git rosdoc2 branch')
-        string(name: 'BASE_URL', defaultValue: 'https://rosdoc2.rosdabbler.com', description: 'Base URL for served files (without distro)')
         string(name: 'AGENT', defaultValue: 'ubuntu', description: 'Agent label')
         string(name: 'REPO_URL', defaultValue: 'https://github.com/rkent/rosdoc2.git', description: 'Repo source URL')
         string(name: 'SUBPROCESSES', defaultValue: '8', description: 'Subprocess count')
-        string(name: 'CREFS', defaultValue: '/srv/dev-crefs')
     }
 
     agent { label "${params.AGENT}" }
+    environment {
+        TAG = "rosdoc2:${env.JOB_NAME}-${env.DESTINATION}-${env.ROS_DISTRO}"
+        BASE_URL = "https://${env.DESTINATION}-rosdoc2.rosdabbler.com"
+        CREFS = "/srv/${env.DESTINATION}-crefs"
+    }
 
     stages {
         stage('Build info') {
@@ -25,7 +28,7 @@ pipeline {
         }
         stage('Docker build rosdoc2') {
             steps {
-                sh 'docker build -t rosdoc2:$JOB_NAME common/rosdoc2'
+                sh 'docker build -t $TAG common/rosdoc2'
             }
         }
         stage('Clone rosdoc2') {
@@ -35,16 +38,16 @@ pipeline {
         }
         stage('Docker run rosdoc2') {
             steps {
-                sh 'docker rm -f $JOB_NAME 2>/dev/null || true'
+                sh 'docker rm -f $TAG 2>/dev/null || true'
                 sh 'rm -rf docs_build'
-                sh 'docker run --rm --name $JOB_NAME -v $WORKSPACE:/workspace -v /srv:/srv rosdoc2:$JOB_NAME run_rosdoc2 \
-                     "scan -p $REPOS/$ROS_DISTRO -t $TIMEOUT -m $MAX_PACKAGES -o $DESTINATION/$ROS_DISTRO -y $DOCS_EX -u $BASE_URL/${ROS_DISTRO} -s $SUBPROCESSES -c ${CREFS}/${ROS_DISTRO}"'
+                sh 'docker run --rm --name $TAG_ -v $WORKSPACE:/workspace -v /srv:/srv $TAG run_rosdoc2 \
+                     "scan -p $REPOS/$ROS_DISTRO -t $TIMEOUT -m $MAX_PACKAGES -o /srv/$DESTINATION-$ROS_DISTRO -y $DOCS_EX -u $BASE_URL -s $SUBPROCESSES -c $CREFS"'
             }
         }
     }
     post {
         always {
-            sh 'docker stop $JOB_NAME 2>/dev/null || true'
+            sh 'docker stop $TAG 2>/dev/null || true'
         }
     }
 }
