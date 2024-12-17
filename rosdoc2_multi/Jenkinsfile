@@ -40,7 +40,7 @@ pipeline {
             steps {
                 sh 'docker rm -f $TAG 2>/dev/null || true'
                 sh 'rm -rf docs_build'
-                sh 'docker run --rm --name $TAG_ -v $WORKSPACE:/workspace -v /srv:/srv $TAG run_rosdoc2 \
+                sh 'docker run --rm --name $TAG -v $WORKSPACE:/workspace -v /srv:/srv $TAG run_rosdoc2 \
                      "scan -p $REPOS/$ROS_DISTRO -t $TIMEOUT -m $MAX_PACKAGES -o /srv/$DESTINATION-$ROS_DISTRO -y $DOCS_EX -u $BASE_URL -s $SUBPROCESSES -c $CREFS"'
             }
         }
