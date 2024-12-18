@@ -42,7 +42,7 @@ pipeline {
                 sh 'rm -rf docs_build'
                 sh 'rm -rf $CREFS'
                 sh 'docker run --rm --name $TAG -v $WORKSPACE:/workspace -v /srv:/srv rosdoc2:$TAG run_rosdoc2 \
-                     "scan -p $REPOS/$ROS_DISTRO -t $TIMEOUT -m $MAX_PACKAGES -o /srv/$DESTINATION-$ROS_DISTRO -y $DOCS_EX -u $BASE_URL -s $SUBPROCESSES -c $CREFS"'
+                     "scan -p $REPOS/$ROS_DISTRO -t $TIMEOUT -m $MAX_PACKAGES -o /srv/$DESTINATION-rosdoc2/$ROS_DISTRO -y $DOCS_EX -u $BASE_URL -s $SUBPROCESSES -c $CREFS"'
             }
         }
     }
