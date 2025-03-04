@@ -1,5 +1,6 @@
 #!/bin/bash
 export ROS_DISTRO=${ROS_DISTRO:-'rolling'}
+export ROS_VERSION=2
 python3 -m venv venv
 source venv/bin/activate
 # python3 -m pip install osrf-pycommon
