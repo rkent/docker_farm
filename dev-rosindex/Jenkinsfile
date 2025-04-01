@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'ubu-large' }
+    agent { label 'local' }
     stages {
         stage('Clone') {
             steps {
