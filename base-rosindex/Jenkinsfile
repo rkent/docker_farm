@@ -20,8 +20,8 @@ pipeline {
         }
         stage('Deploy website') {
             steps {
-                sh 'pwd'
-                sh 'common/deploy.sh'
+                sh 'cd _site && pwd'
+                sh 'cd _site && ls'
             }
         }
     }
