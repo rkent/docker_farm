@@ -21,7 +21,7 @@ pipeline {
         stage('Deploy website') {
             steps {
                 sh 'git -C _site init -b main'
-                sh 'git -C _site remote rm origin'
+                sh 'git -C _site remote rm origin || true'
                 sh 'git -C _site remote add -f origin git@github.com:rosdabbler/index.rosdabbler.com.git'
                 sh 'git -C _site reset origin/main'
                 sh 'git -C _site add .'
