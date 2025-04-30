@@ -20,8 +20,13 @@ pipeline {
         }
         stage('Deploy website') {
             steps {
-                sh 'cd _site && pwd'
-                sh 'cd _site && ls'
+                sh 'git -C _site init -b main'
+                sh 'git -C _site remote rm origin'
+                sh 'git -C _site remote add -f origin git@github.com:rosdabbler/index.rosdabbler.com.git'
+                sh 'git -C _site reset origin/main'
+                sh 'git -C _site add .'
+                sh 'git -C _site commit --amend --no-edit'
+                sh 'git -C _site push -f --set-upstream origin main'
             }
         }
     }
