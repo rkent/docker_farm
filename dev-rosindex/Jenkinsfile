@@ -4,7 +4,7 @@ pipeline {
         stage('Clone') {
             steps {
                 sh 'env'
-                git branch: 'ros2-rkent', url: 'https://github.com/rkent/rosindex'
+                git branch: 'dev', url: 'https://github.com/rkent/rosindex'
             }
         }
         stage('Build Image') {
