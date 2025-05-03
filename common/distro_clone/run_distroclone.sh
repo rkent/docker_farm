@@ -3,7 +3,7 @@
 ROS_DISTRO=${1:-'rolling'}
 DESTINATION=${2:-'checkout'}
 REPO_MERGE_FILE=${3:-''}
-GITHUB_PATH='repo_multi/distroclone/github'
+GITHUB_PATH='distroclone/github'
 python3 -m venv venv
 source venv/bin/activate
 python3 -m pip install osrf-pycommon
