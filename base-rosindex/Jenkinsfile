@@ -22,6 +22,8 @@ pipeline {
         /**/
         stage('Deploy website') {
             steps {
+                sh 'git config --global user.name "R. Kent James"'
+                sh 'git config --global user.email "kent@caspia.com"'
                 sh 'rm -rf _site/.git'
                 sh 'git -C _site init -b main'
                 sh 'git -C _site remote add origin git@github.com:rosdabbler/index.rosdabbler.com.git'
