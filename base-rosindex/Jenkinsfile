@@ -12,14 +12,14 @@ pipeline {
                 sh 'docker/build.sh'
             }
         }
-        /*
+        /**/
         stage('Build website') {
             steps {
                 sh 'rm -rf _remotes'
-                sh 'docker/run.sh make build'
+                sh 'docker/run.sh make test-build'
             }
         }
-        */
+        /**/
         stage('Deploy website') {
             steps {
                 sh 'rm -rf _site/.git'
