@@ -22,8 +22,7 @@ pipeline {
         /**/
         stage('Deploy website') {
             steps {
-                sh 'eval $(ssh-agent -s)'
-                sh 'ssh-add -l'
+                sh 'eval $(ssh-agent -s) && ssh-add -l'
                 sh 'git config --global user.name "R. Kent James"'
                 sh 'git config --global user.email "kent@caspia.com"'
                 sh 'rm -rf _site/.git'
