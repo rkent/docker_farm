@@ -27,7 +27,7 @@ pipeline {
                 sh 'git -C _site remote add origin git@github.com:rosdabbler/index.rosdabbler.com.git'
                 sh 'git -C _site reset origin/main'
                 sh 'git -C _site add .'
-                sh 'git -C _site commit -m "Website publish'
+                sh 'git -C _site commit -m "Website publish"'
                 sh 'git -C _site push -f --set-upstream origin main'
             }
         }
