@@ -142,6 +142,7 @@ services:
       - ./:/var/docker_farm
       - /srv/disks/ros2:/ros2
       - /srv:/srv
+      - /ros2/jenkins:/var/jenkins_home
     group_add:
       - 998 #docker group id
     # JENKINS_HOME should point to a directory that it the same in host and container.
