@@ -16,7 +16,7 @@ pipeline {
     agent { label "${params.AGENT}" }
     environment {
         TAG = "${env.JOB_NAME}_${env.DESTINATION}_${env.ROS_DISTRO}"
-        BASE_URL = "https://${env.DESTINATION}-rosdoc2.rosdabbler.com"
+        BASE_URL = "https://${env.DESTINATION}-rosdoc2.rosdabbler.com/${env.ROS_DISTRO}"
         CREFS = "/srv/${env.DESTINATION}-crefs/${env.ROS_DISTRO}"
     }
 
