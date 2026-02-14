@@ -129,6 +129,18 @@ services:
     container_name: music_web
     hostname: music_web
 
+  ai_demo_web:
+    build: './rosdoc2_web'
+    restart: unless-stopped
+    ports:
+      # These ports are in format <host-port>:<container-port>
+      - '8088:80' # Public HTTP Port
+    volumes:
+      - /srv/ai_demo/docs_output:/usr/share/nginx/html
+      - /srv:/srv
+    container_name: ai_demo_web
+    hostname: ai_demo_web
+
   jenkins:
     build: ./jenkins
     restart: unless-stopped
