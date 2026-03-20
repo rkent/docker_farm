@@ -1,4 +1,17 @@
 services:
+  goaccess:
+    image: justsky/goaccess-for-nginxproxymanager:latest
+    container_name: goaccess
+    hostname: goaccess
+    restart: always
+    volumes:
+      - /srv/proxy/data/logs:/opt/log # Map your NPM log folder
+    ports:
+      - "7890:7890" # Access UI on this port
+    environment:
+      - GOACCESS_ARGS=--log-format=COMBINED
+      - TZ=America/Los_Angeles
+
   proxy:
     image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
@@ -148,7 +161,7 @@ services:
       # These ports are in format <host-port>:<container-port>
       - '8090:80' # Public HTTP Port
     volumes:
-      - /srv/ai_index/_site:/usr/share/nginx/html
+      - /srv/ai-rosindex/_site:/usr/share/nginx/html
       - /srv:/srv
     container_name: ai_index_web
     hostname: ai_index_web
