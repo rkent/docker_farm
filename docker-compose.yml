@@ -199,6 +199,18 @@ services:
     container_name: rosdabbler_web
     hostname: rosdabbler_web
 
+  creekside_web:
+    image: 'nginx:1.27'
+    restart: unless-stopped
+    ports:
+      # These ports are in format <host-port>:<container-port>
+      - '8091:80' # Public HTTP Port
+    volumes:
+      - /srv/creekside/song_stats/_site:/usr/share/nginx/html
+      - /srv:/srv
+    container_name: creekside_web
+    hostname: creekside_web
+
 secrets:
   db_password:
     file: secrets/db_password.txt
