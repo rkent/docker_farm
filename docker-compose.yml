@@ -1,13 +1,13 @@
 services:
   goaccess:
-    image: justsky/goaccess-for-nginxproxymanager:latest
+    image: xavierh/goaccess-for-nginxproxymanager:latest
     container_name: goaccess
     hostname: goaccess
     restart: always
     volumes:
       - /srv/proxy/data/logs:/opt/log # Map your NPM log folder
     ports:
-      - "7890:7890" # Access UI on this port
+      - "7890:7890"
     environment:
       - GOACCESS_ARGS=--log-format=COMBINED
       - TZ=America/Los_Angeles
