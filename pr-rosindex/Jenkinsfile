@@ -1,8 +1,8 @@
 pipeline {
     agent { label 'local' }
-    environment [
+    environment {
         GITHUB_TOKEN = credentials('github-token')
-    ]
+    }
     stages {
         stage('Clone') {
             steps {
