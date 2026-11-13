@@ -28,7 +28,7 @@ pipeline {
         }
         stage('Docker build rosdoc2') {
             steps {
-                sh 'docker build -t rosdoc2:$TAG common/rosdoc2'
+                sh 'docker build --pull --build-arg ROS_DISTRO="$ROS_DISTRO" -t rosdoc2:$TAG common/rosdoc2'
             }
         }
         stage('Clone rosdoc2') {
