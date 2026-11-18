@@ -3,11 +3,12 @@ FROM ros:${ROS_DISTRO}
 
 ARG user=rosdoc2
 ARG uid=1000
+ARG REPOS=/srv/repos
 
 # Setup locale and minimum debian packages
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update && apt install -y locales
-
+ENV REPOS=${REPOS}
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     dpkg-reconfigure --frontend=noninteractive locales && \
     update-locale LANG=en_US.UTF-8
