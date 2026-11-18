@@ -36,5 +36,11 @@ RUN if [ "$(id -u ubuntu 2>/dev/null || true)" = "$uid" ]; then \
       useradd -u "$uid" -m "$user"; \
     fi
 
+# Allow rosdep (run as $user at container runtime) to install packages via sudo
+RUN apt install -y --no-install-recommends sudo && \
+    echo "$user ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/$user && \
+    echo 'Defaults env_keep += "DEBIAN_FRONTEND"' >> /etc/sudoers.d/$user && \
+    chmod 0440 /etc/sudoers.d/$user
+
 WORKDIR /workspace
 USER $user

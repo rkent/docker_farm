@@ -4,6 +4,7 @@ export ROS_VERSION=2
 python3 -m venv --system-site-packages venv
 source venv/bin/activate
 source /opt/ros/${ROS_DISTRO}/setup.bash
+sudo apt-get update
 rosdep update
 rosdep install --from-paths $REPOS/$ROS_DISTRO --ignore-src -y -r -t doc
 # python3 -m pip install osrf-pycommon
